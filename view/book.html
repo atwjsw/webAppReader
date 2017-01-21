@@ -1,2 +1,347 @@
-书籍详情页
-书籍Id：<%=bookId%>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <!-- <link rel="stylesheet" href="/static/css/all.css"> -->
+    <style>
+    .main-card {
+    	border-bottom: 10px solid #f5f5f5;
+    }
+
+	.main-card.-folder {
+		padding-bottom: 1px;
+	}
+
+	.main-card.-folder .cnt {
+		margin-bottom: 12px;
+	}
+	
+	.main-card>.cnt, .main-card .list li {		
+		padding-left: 14px;
+		padding-right: 14px;
+	}
+	
+	.u-title {
+		margin-bottom: 8px;
+		padding-top: 15px;
+		padding-left: 14px;
+		padding-right: 14px;
+		font-size: 15px;
+		color: #8d8d8d;
+	}
+	
+	.u-book {
+		position: relative;
+		overflow: hidden;
+	}
+
+	.u-book.-detail {
+		padding: 40px;
+		display: table;
+		width: 100%;
+		box-sizing: border-box;
+	}
+
+	.u-book.-vertical {
+		width: 86px;
+	}
+
+	.u-book.-vertical .title{
+		font-size: 13px;
+		line-height: 1.4em;
+		max-height: 2.8em;
+		overflow: hidden;
+		color: #8d8d8d;
+		margin-bottom: 0;
+		text-align: left;
+	}
+
+
+	.u-book.-vertical .book-cover {
+		float: none;
+		height: 113px;
+		width: 86px;
+	}
+
+	.u-book.-vertical .info {
+		margin-left: 0;
+		padding-top: 8px;
+	}
+      
+    .u-book.-detail .book-cover {
+        width: 100px;
+        height: 134px;       
+    }
+
+    .u-book.-detail .author {
+    	color: #4b99a7;
+    }
+
+    .u-book.-detail .author>span {
+    	display: inline-block;
+    	margin-right: 5px;
+    }
+
+	.u-book.-detail .title {
+		margin-bottom: 13px;
+		font-size: 16px;
+	}
+
+	.u-book.-detail .info {
+		padding: 0 0 0 14px;
+		display: table-cell;
+		vertical-align: middle;
+	}
+
+	.book-cover {
+		position: relative;
+		background: #eeece9;
+		box-shadow: 0 6px 5px -3px #aaa;
+		border: 1px solid #f0f0f0;
+		border-bottom: none;
+		overflow: hidden;
+	}
+
+	.book-cover img {
+		width: 100%;
+		height: 100%;
+	}
+
+	.u-booktag {
+		margin-left: 3px;
+		border: 1px solid #00a0e9;
+		border-radius: 4px;
+		font-size: 12px;
+		line-height: 16px;
+		display: inline-block;
+		padding: 0 2px;
+	}
+
+	.u-booktag.-serial{
+		color: #63db6e;
+		border-color: #63bd6e;
+	}
+
+	.btn-group {
+		width: 100%;
+		font-size: 0;
+		white-space: nowrap;		
+	}
+	
+	.book-dash .wrap {
+		padding: 0 14px;
+		margin: 0 0 27px;
+	} 
+
+	.book-dash-text:after {
+		content: '\5f00\59cb\9605\8bfb';
+	}
+	
+	.btn-group li {display: inline-block; width: 49%;}
+	.btn-group li:only-child{width: 100%;}
+	.btn-group li:first-child{margin-right: 2%;}
+	.u-btn2 {
+		display: block;
+		height: 2.8em;
+		line-height: 2.8em;
+		text-align: center;
+		border-radius: 4px;
+		font-size: 14px;
+		-webkit-box-sizing: border-box;
+		background: #f35d02;
+		border: 1px solid #e35109;
+		color: #fff;
+		padding: 0 10px;
+	}
+
+	.u-folder>.folder-cnt {
+		position: relative;
+		line-height: 1.6;
+		padding: 0 14px;
+		margin-bottom: 10px;
+		font-size: 14px;
+		color: #585858;
+	}
+
+	.u-folder>.folder-tail {
+		text-align: center;
+		font-size: 14px;
+		border-top: 1px solid #f0f0f0;
+		color: #8d8d8d; 
+	}
+
+	.u-folder>.folder-top {
+		font-size: 16px;
+		font-weight: normal;
+		color: #8d8d8d;
+		padding: 14px 14px 8px;
+	}
+	
+	.m-tag {
+		line-height: 1;
+		overflow: hidden;		
+	}
+	.m-tag.-color .u-tag:nth-child(3n+1) {
+		background-color: #fbebe8;
+	}
+	.m-tag.-color .u-tag:nth-child(3n+2) {
+		background-color: pink;
+	}
+	.m-tag.-color .u-tag:nth-child(3n+3) {
+		background-color: #ccc;
+	}
+	.m-tag .u-tag {
+		margin: 0 10px 5px 0;
+		display: inline-block;
+		width: auto;
+		line-height: 1.8em;
+		padding: 0 20px;
+		color: #7665d5;
+		border-radius: 4px;
+		background: #909da8;
+		font-size: 14px;
+		text-align: center;
+		border: 1px solid #d3d3d3;
+	}
+	
+	.book-table {font-size:0;}
+	.book-table li {
+		width: 33.3%;
+		display: inline-block;
+		vertical-align: top;
+		line-height: 1;
+		margin-bottom: 8px;
+	}
+	
+	.book-table li>* {
+		display: inline-block;
+	}
+	.book-table li:nth-child(3n+1) {
+		text-align: left;
+	}
+	.book-table li:nth-child(3n+2) {
+		text-align: center;
+	}
+	.book-table li:nth-child(3n+3) {
+		text-align: right;
+	}
+
+    </style>
+    <title>书籍详情</title>
+</head>
+
+<body>
+    <div id="app" style="width:734px; overflow: hidden;">
+        <% include include/common-header.html%>
+            <div class="container-scroll" style="width:734px;">
+                <div class="book-page">
+                    <section class="main-card" style="border-bottom: none;">
+                        <div class="u-book -detail">
+                            <div class="book-cover">
+                                <img alt="妾色" src="http://cover.read.duokan.com/mfsv2/download/s010/p01DgxSVc0mr/TF9dpynmR1Bax5.jpg!s">
+                            </div>
+                            <div class="info">
+                                <h3 class="title">妾色</h3>
+                                <p class="author">
+                                    <span class="author">唐梦若影</span>
+                                </p>
+                                <p class="u-grade">
+                                    <span>61个评价</span>
+                                </p>
+                                <p class="price">价格：5书币/千字</p>
+                                <p class="count">
+                                    字数：148万字
+                                    <span class="u-booktag -serial">连载中</span>
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="main-card">
+                        <div class="book-dash">
+                            <div class="wrap">
+                                <ul class="btn-group">
+                                    <li class="u-btn2" onclick="location.href='/reader'"><span class="book-dash-text"></span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="u-folder">
+                            <div class="folder-cnt">
+                                “你是不是该给我一个解释？”与他成亲一年，两个月前暴病去世的女人此刻竟然悠闲的逛着街，而她身边四五岁的男娃为何该死的越看越像他？“公子是谁啊！”好！竟敢明目张胆的糊弄他，就是因为他宠妻如命！他堂堂楚王！还怕治不了这个小女子！捉回去，慢慢治！
+                            </div>
+                            <div class="folder-tail">
+                            	<div>最新：暂无</div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="main-card">
+                    	<div class="u-folder">
+                    		<div class="folder-top">
+                    			<h3>类别标签</h3>
+                    		</div>
+                    		<div class="folder-cnt">
+                    			<ul class="m-tag -color">
+                    				<li class="u-tag">
+                    					寻墓探险
+                    				</li>
+                    				<li class="u-tag">
+                    					武侠传奇
+                    				</li>
+                    				<li class="u-tag">
+                    					古代历史
+                    				</li>
+                    			</ul>
+                    		</div>
+                    	</div>
+                    </section>
+                    <section class="main-card -folder">
+                    	<div class="u-title">
+                    		<h1>喜欢本书的人也喜欢</h1>
+                    	</div>
+                    	<div class="cnt">
+                    		<ul class="book-table">
+                    			<li>
+                    				<div class="u-book -vertical">
+                    					<div class="book-cover">
+                    						<img alt="至尊魔妃：废材大小姐" src="http://cover.read.duokan.com/mfsv2/download/fdsc3/p01bSYQnkiOW/bs8icEQnJDC6gS.jpg!s">
+                    					</div>
+                    					<div class="info">
+                    						<h3 class="title">至尊魔妃：废材大小姐</h3>
+                    					</div>
+                    				</div>
+                    			</li>
+                    			<li>
+                    				<div class="u-book -vertical">
+                    					<div class="book-cover">
+                    						<img alt="至尊魔妃：废材大小姐" src="http://cover.read.duokan.com/mfsv2/download/fdsc3/p01bSYQnkiOW/bs8icEQnJDC6gS.jpg!s">
+                    					</div>
+                    					<div class="info">
+                    						<h3 class="title">至尊魔妃：废材大小姐</h3>
+                    					</div>
+                    				</div>
+                    			</li>
+                    			<li>
+                    				<div class="u-book -vertical">
+                    					<div class="book-cover">
+                    						<img alt="至尊魔妃：废材大小姐" src="http://cover.read.duokan.com/mfsv2/download/fdsc3/p01bSYQnkiOW/bs8icEQnJDC6gS.jpg!s">
+                    					</div>
+                    					<div class="info">
+                    						<h3 class="title">至尊魔妃：废材大小姐</h3>
+                    					</div>
+                    				</div>
+                    			</li>
+                    		</ul>
+                    	</div>
+                    </section>
+                </div>
+            </div>
+    </div>
+</body>
+<script src="/static/script/vue.js "></script>
+<script src="/static/script/zepto.js "></script>
+<script src="/static/script/pages/book.js "></script>
+
+</html>

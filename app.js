@@ -82,7 +82,7 @@ app.use(controller.get("/book", function*() {
 	if (!bookId) {
 		bookId = '';
 	}
-	this.body = yield render('book', {bookId: bookId});		
+	this.body = yield render('book', {nav: '书籍名称'});		
 }));
 
 
