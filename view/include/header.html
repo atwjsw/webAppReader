@@ -4,7 +4,7 @@
         <a href="javascript:" v-on:click="tabSwitch(0)" class="{{ tab_1_class }}"></a>
         <a href="javascript:" v-on:click="tabSwitch(1)" class="{{ tab_2_class }}"></a>
         <!-- 所有写到style里面的属性都是要被js操作的，写到css里面的属于静态属性         -->
-        <i style="transition-duration: {{ header_duration }}s; transform:translate3d({{ header_position }}px,0px,0px)"></i>
+        <i style="width:{{ index_header_tab_width }}px;transition-duration: {{ header_duration }}s; transform:translate3d({{ header_position }}px,0px,0px)"></i>
     </div>
     <em class="header-user"></em>
     <em class="header-checkin"></em>

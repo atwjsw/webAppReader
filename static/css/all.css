@@ -19,6 +19,7 @@
     overflow-y: scroll;
 }
 
+
 /*header部分样式*/
 
 .header-tab {
@@ -405,6 +406,31 @@
     font-size: 0;
 }
 
+.u-book.-vertical {
+    width: 86px;
+}
+
+.u-book.-vertical .title {
+    font-size: 13px;
+    line-height: 1.4em;
+    max-height: 2.8em;
+    overflow: hidden;
+    color: #8d8d8d;
+    margin-bottom: 0;
+    text-align: left;
+}
+
+.u-book.-vertical .book-cover {
+    float: none;
+    height: 113px;
+    width: 86px;
+}
+
+.u-book.-vertical .info {
+    margin-left: 0;
+    padding-top: 8px;
+}
+
 .book-table li {
     width: 33.3%;
     display: inline-block;
@@ -444,7 +470,7 @@
     border: 1px solid #f0f0f0;
     border-radius: 1px;
     overflow: hidden;
-    border-bottom: none;
+    border-bottom: none;    
 }
 
 .book-cover img {

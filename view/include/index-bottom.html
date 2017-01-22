@@ -5,26 +5,13 @@
         </p>
     </div>
     <ul class="banner-h5__list f-cb">
-        <li>
+        <li v-for="item in topic">
             <div class="banner-h5__cover">
-                <img class="cover" src="http://image.read.duokan.com/mfsv2/download/fdsc3/p01JgiKpfnDB/MZzw0tsiPf5V5b.jpg" alt="">
-            </div>
-        </li>
-        <li>
-            <div class="banner-h5__cover">
-                <img class="cover" src="http://image.read.duokan.com/mfsv2/download/fdsc3/p01JgiKpfnDB/MZzw0tsiPf5V5b.jpg" alt="">
+                <img class="cover" v-bind:src="item.ad_pic_url" alt="{{ item.ad_name }}">
             </div>
         </li>
     </ul>
-    <a class="channel-h5__footer href=" /topic ">更多精彩专题&gt;&gt;</a>
+    <a class="channel-h5__footer href="/topic ">更多精彩专题&gt;&gt;</a>
 </section>
 <br>
 <br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-

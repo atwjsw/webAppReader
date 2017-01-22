@@ -1,10 +1,20 @@
 // 连通前端界面与后端接口的代码
-$.get('ajax/index', function(d) {
+$.get('/ajax/index', function(d) {
+    var windowWidth = $(window).width();    
+    if (windowWidth < 320) {
+        windowWidth = 320;
+    }
+    var offset = $($('.Swipe-tab').find('a')[0]).offset();
+    var index_header_tab_width = offset.width;    
+    console.log(d.items[6].data.data);
     new Vue({
         // 界定作用域
         el: '#app',
         // 界面渲染数据 
         data: {
+            screen_width: windowWidth,
+            double_screen_width: windowWidth*2,
+            index_header_tab_width: index_header_tab_width,
             top: d.items[0].data.data,
             hot: d.items[1].data.data,
             recommend: d.items[2].data.data,
@@ -31,10 +41,9 @@ $.get('ajax/index', function(d) {
             	} else {
             		this.tab_2_class = 'Swipe-tab__on';
             		this.tab_1_class =  '';
-            		this.header_position = '277';
-            		this.position = -734;
+            		this.header_position = index_header_tab_width;
+            		this.position = - windowWidth;
             	}
-
             }
         }
 
